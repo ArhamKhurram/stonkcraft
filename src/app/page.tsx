@@ -1,69 +1,191 @@
 import Image from "next/image";
+import Link from "next/link";
+import CopyIP from "@/components/CopyIP";
+import MinigameCard from "@/components/MinigameCard";
+import LeaderboardTable from "@/components/LeaderboardTable";
+import { minigames, leaderboard, stats } from "@/lib/data";
 
 export default function Home() {
+  const featured = minigames.filter((g) => g.status === "live").slice(0, 4);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <>
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        {/* Banner backdrop */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/banner.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-bg/75 to-bg" />
+          <div className="absolute inset-0 bg-gradient-to-r from-bg/70 via-bg/30 to-bg/60" />
+        </div>
+
+        <div className="mx-auto max-w-6xl px-4 pt-24 pb-28 md:pt-36 md:pb-40 flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 block px-3 py-1.5 text-[11px] text-muted">
+            <span className="live-dot inline-block w-2 h-2 bg-up" />
+            Season 1 · Pre-alpha · 1.21 Java
+          </div>
+          <h1 className="pixel pixel-shadow mt-8 text-2xl sm:text-3xl lg:text-[2.8rem] leading-[1.35] text-ice">
+            PLAY MINECRAFT.
+            <br />
+            <span className="text-ice-2">WIN STOCKS.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-6 text-base sm:text-lg text-text max-w-2xl leading-relaxed [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
+            StonkCraft is a minigame server where every win pays out in real fractional shares.
+            Parkour, PvP, spleef, bed wars. Beat the lobby, grow the portfolio, top the board.
           </p>
+          <div className="mt-10">
+            <CopyIP large />
+          </div>
+          <div className="mt-5 flex flex-wrap justify-center gap-3">
+            <Link href="/minigames" className="btn btn-primary">
+              ▶ Browse games
+            </Link>
+            <Link href="/how-it-works" className="btn btn-ghost bg-bg/60">
+              How it works
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* STATS */}
+        <div className="mx-auto max-w-6xl px-4 pb-4 -mt-12 relative">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {stats.map((s) => (
+              <div key={s.label} className="block px-5 py-4">
+                <div className="pixel text-sm sm:text-base text-ice">{s.value}</div>
+                <div className="mt-2 text-[11px] uppercase tracking-wide text-muted">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* HOW IT WORKS (short) */}
+      <section className="mx-auto max-w-6xl px-4 py-20">
+        <SectionHeader
+          kicker="The loop"
+          title="Queue. Win. Get paid."
+          blurb="No deposits, no wallets to connect. You play, the server pays. Shares land in your in-game portfolio the moment the match ends."
+        />
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              n: "01",
+              title: "Join a lobby",
+              body: "Connect with any vanilla Java client. Pick a minigame from the hub compass and queue up. Matches fill in seconds.",
+              icon: "🧭",
+            },
+            {
+              n: "02",
+              title: "Win the match",
+              body: "Every minigame has a prize pool of fractional shares. Podium finishes, eliminations and objectives all pay out.",
+              icon: "⚔️",
+            },
+            {
+              n: "03",
+              title: "Build a portfolio",
+              body: "Winnings show up instantly as holdings. Check them with /portfolio, trade them at the hub exchange, or hold them and let the market cook.",
+              icon: "📈",
+            },
+          ].map((s) => (
+            <div key={s.n} className="block p-6 relative">
+              <span className="pixel text-[10px] text-muted absolute top-4 right-4">{s.n}</span>
+              <div className="text-3xl">{s.icon}</div>
+              <h3 className="pixel text-xs text-ice mt-4">{s.title}</h3>
+              <p className="mt-3 text-sm text-muted leading-relaxed">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* MINIGAMES */}
+      <section className="mx-auto max-w-6xl px-4 py-10">
+        <div className="flex items-end justify-between gap-4 flex-wrap">
+          <SectionHeader kicker="Minigames" title="Live right now" />
+          <Link href="/minigames" className="btn btn-ghost">
+            All games →
+          </Link>
+        </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {featured.map((g) => (
+            <MinigameCard key={g.slug} game={g} compact />
+          ))}
+        </div>
+      </section>
+
+      {/* LEADERBOARD */}
+      <section className="mx-auto max-w-6xl px-4 py-20">
+        <div className="flex items-end justify-between gap-4 flex-wrap">
+          <SectionHeader
+            kicker="Leaderboard"
+            title="Top portfolios"
+            blurb="Ranked by total portfolio value at market close. Resets every season; winnings carry over."
+          />
+          <Link href="/leaderboard" className="btn btn-ghost">
+            Full board →
+          </Link>
+        </div>
+        <div className="mt-10">
+          <LeaderboardTable players={leaderboard.slice(0, 5)} />
+        </div>
+      </section>
+
+      {/* JOIN CTA */}
+      <section id="join" className="mx-auto max-w-6xl px-4 py-10 scroll-mt-24">
+        <div className="block-raised px-6 py-12 sm:px-12 text-center relative overflow-hidden">
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{ background: "radial-gradient(50% 80% at 50% 100%, rgba(159,216,230,0.15), transparent 70%)" }}
+          />
+          <Image
+            src="/logo.png"
+            alt=""
+            width={160}
+            height={160}
+            className="float mx-auto mb-6 w-28 sm:w-40 h-auto drop-shadow-[0_16px_32px_rgba(0,0,0,0.6)] relative"
+          />
+          <h2 className="pixel pixel-shadow text-lg sm:text-2xl text-ice leading-relaxed relative">
+            READY TO GO LONG?
+          </h2>
+          <p className="mt-4 text-muted max-w-lg mx-auto relative">
+            Java Edition 1.21+. No mods, no launcher, no signup form. Paste the address and join.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 relative">
+            <CopyIP large />
+            <a href="#" className="btn btn-ghost">
+              Join the Discord
+            </a>
+          </div>
+          <ol className="mt-10 grid gap-3 sm:grid-cols-3 text-left text-sm relative">
+            {[
+              "Open Minecraft → Multiplayer → Add Server",
+              "Paste play.stonkcraft.gg and save",
+              "Join, grab the compass, pick a game",
+            ].map((step, i) => (
+              <li key={i} className="block px-4 py-3 flex gap-3">
+                <span className="pixel text-[10px] text-ice-2 shrink-0">{i + 1}.</span>
+                <span className="text-text">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function SectionHeader({ kicker, title, blurb }: { kicker: string; title: string; blurb?: string }) {
+  return (
+    <div>
+      <div className="pixel text-[10px] uppercase text-ice-2">{kicker}</div>
+      <h2 className="pixel pixel-shadow mt-3 text-lg sm:text-2xl text-ice leading-relaxed">{title}</h2>
+      {blurb && <p className="mt-4 text-muted max-w-2xl leading-relaxed">{blurb}</p>}
     </div>
   );
 }
