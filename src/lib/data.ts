@@ -161,10 +161,10 @@ export const leaderboard: Player[] = [
 ];
 
 export const stats = [
-  { label: "Players online", value: "37" },
-  { label: "Shares paid out", value: "412" },
-  { label: "Games today", value: "96" },
-  { label: "Top payout", value: "0.5 NVDA" },
+  { label: "Players online", value: "1" },
+  { label: "Shares paid out", value: "0" },
+  { label: "Games today", value: "1" },
+  { label: "Top payout", value: "None yet" },
 ];
 
 export const SERVER_IP = "play.stonkcraft.gg";
