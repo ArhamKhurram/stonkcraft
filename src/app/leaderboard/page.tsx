@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LeaderboardTable from "@/components/LeaderboardTable";
+import EmptyBoard from "@/components/EmptyBoard";
 import { leaderboard } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -8,10 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function LeaderboardPage() {
-  const top = leaderboard.slice(0, 3);
-  const totalValue = leaderboard.reduce((a, p) => a + p.portfolio, 0);
-  const bestDay = [...leaderboard].sort((a, b) => b.change24h - a.change24h)[0];
-  const bestRate = [...leaderboard].sort((a, b) => b.wins / b.games - a.wins / a.games)[0];
+  const hasPlayers = leaderboard.length > 0;
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16">
@@ -24,17 +22,33 @@ export default function LeaderboardPage() {
           </p>
         </div>
         <div className="block px-4 py-3 text-xs text-muted">
-          Season ends in <span className="text-ice">41d 06h</span>
+          Season starts <span className="text-ice">when the server opens</span>
         </div>
       </div>
 
-      {/* Podium */}
+      {hasPlayers ? <FullBoard /> : (
+        <div className="mt-12">
+          <EmptyBoard />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FullBoard() {
+  const top = leaderboard.slice(0, 3);
+  const totalValue = leaderboard.reduce((a, p) => a + p.portfolio, 0);
+  const bestDay = [...leaderboard].sort((a, b) => b.change24h - a.change24h)[0];
+  const bestRate = [...leaderboard].sort((a, b) => b.wins / b.games - a.wins / a.games)[0];
+  const podiumOrder = [top[1], top[0], top[2]].filter(Boolean);
+
+  return (
+    <>
       <div className="mt-12 grid gap-4 sm:grid-cols-3 items-end">
-        {[top[1], top[0], top[2]].map((p, i) => {
-          const height = i === 1 ? "sm:pt-10" : "sm:pt-4";
+        {podiumOrder.map((p) => {
           const medal = p.rank === 1 ? "🥇" : p.rank === 2 ? "🥈" : "🥉";
           return (
-            <div key={p.rank} className={`block-raised p-6 text-center ${height}`}>
+            <div key={p.rank} className={`block-raised p-6 text-center ${p.rank === 1 ? "sm:pt-10" : "sm:pt-4"}`}>
               <div className="text-3xl">{medal}</div>
               <div className="pixel text-xs text-ice mt-3 break-all">{p.name}</div>
               <div className="mt-3 text-lg text-text tabular-nums">
@@ -52,7 +66,6 @@ export default function LeaderboardPage() {
         })}
       </div>
 
-      {/* Quick stats */}
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
         <Stat label="Total value on board" value={`$${totalValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}`} />
         <Stat label="Biggest mover today" value={`${bestDay.name} +${bestDay.change24h}%`} />
@@ -62,11 +75,7 @@ export default function LeaderboardPage() {
       <div className="mt-10">
         <LeaderboardTable players={leaderboard} full />
       </div>
-
-      <p className="mt-6 text-[11px] text-muted">
-        Portfolio values are illustrative for the pre-alpha and will be replaced by live data when the server launches.
-      </p>
-    </div>
+    </>
   );
 }
 

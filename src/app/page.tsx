@@ -3,6 +3,7 @@ import Link from "next/link";
 import CopyIP from "@/components/CopyIP";
 import MinigameCard from "@/components/MinigameCard";
 import LeaderboardTable from "@/components/LeaderboardTable";
+import EmptyBoard from "@/components/EmptyBoard";
 import { minigames, leaderboard, stats } from "@/lib/data";
 
 export default function Home() {
@@ -132,7 +133,11 @@ export default function Home() {
           </Link>
         </div>
         <div className="mt-10">
-          <LeaderboardTable players={leaderboard.slice(0, 5)} />
+          {leaderboard.length ? (
+            <LeaderboardTable players={leaderboard.slice(0, 5)} />
+          ) : (
+            <EmptyBoard compact />
+          )}
         </div>
       </section>
 

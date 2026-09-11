@@ -145,20 +145,8 @@ export type Player = {
   topHolding: string;
 };
 
-export const leaderboard: Player[] = [
-  { rank: 1, name: "Diamond_Dan", portfolio: 318.4, change24h: 4.1, wins: 19, games: 44, topHolding: "NVDA" },
-  { rank: 2, name: "xX_Buffett_Xx", portfolio: 276.9, change24h: 1.3, wins: 16, games: 51, topHolding: "AAPL" },
-  { rank: 3, name: "creeper_capital", portfolio: 241.05, change24h: -1.8, wins: 17, games: 39, topHolding: "TSLA" },
-  { rank: 4, name: "Enderman_ETF", portfolio: 198.2, change24h: 2.6, wins: 12, games: 33, topHolding: "SPY" },
-  { rank: 5, name: "PaperHands69", portfolio: 164.7, change24h: -5.4, wins: 8, games: 41, topHolding: "GME" },
-  { rank: 6, name: "Notch_Trades", portfolio: 152.3, change24h: 1.1, wins: 11, games: 30, topHolding: "MSFT" },
-  { rank: 7, name: "SteveJobs_", portfolio: 139.8, change24h: 0.4, wins: 10, games: 28, topHolding: "AAPL" },
-  { rank: 8, name: "Blaze_Bull", portfolio: 121.6, change24h: 2.2, wins: 9, games: 27, topHolding: "AMD" },
-  { rank: 9, name: "villager_hft", portfolio: 104.0, change24h: -0.3, wins: 8, games: 24, topHolding: "META" },
-  { rank: 10, name: "OreGainz", portfolio: 88.5, change24h: 3.0, wins: 6, games: 19, topHolding: "PLTR" },
-  { rank: 11, name: "Redstone_Ray", portfolio: 73.2, change24h: 0.7, wins: 6, games: 21, topHolding: "AMZN" },
-  { rank: 12, name: "moon_boi", portfolio: 61.9, change24h: 8.9, wins: 4, games: 17, topHolding: "COIN" },
-];
+// Empty until the server is live. Shape is what the site expects from the API.
+export const leaderboard: Player[] = [];
 
 export const stats = [
   { label: "Players online", value: "1" },
