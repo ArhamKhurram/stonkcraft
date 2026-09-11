@@ -53,7 +53,7 @@ export default function Nav() {
         <div className="hidden md:flex items-center gap-3">
           <span className="flex items-center gap-2 text-xs text-muted">
             <span className="live-dot inline-block w-2 h-2 bg-up" />
-            1,284 online
+            37 online
           </span>
           <Link href="/#join" className="btn btn-primary !py-2.5 !px-4 !text-[9px]">
             Play now

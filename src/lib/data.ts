@@ -146,25 +146,25 @@ export type Player = {
 };
 
 export const leaderboard: Player[] = [
-  { rank: 1, name: "Diamond_Dan", portfolio: 4820.15, change24h: 7.4, wins: 212, games: 540, topHolding: "NVDA" },
-  { rank: 2, name: "xX_Buffett_Xx", portfolio: 4104.9, change24h: 2.1, wins: 188, games: 610, topHolding: "AAPL" },
-  { rank: 3, name: "creeper_capital", portfolio: 3877.32, change24h: -1.3, wins: 201, games: 498, topHolding: "TSLA" },
-  { rank: 4, name: "Enderman_ETF", portfolio: 3410.0, change24h: 4.8, wins: 150, games: 402, topHolding: "SPY" },
-  { rank: 5, name: "PaperHands69", portfolio: 2990.55, change24h: -6.2, wins: 97, games: 455, topHolding: "GME" },
-  { rank: 6, name: "Notch_Trades", portfolio: 2741.8, change24h: 1.9, wins: 133, games: 366, topHolding: "MSFT" },
-  { rank: 7, name: "SteveJobs_", portfolio: 2588.2, change24h: 0.6, wins: 121, games: 340, topHolding: "AAPL" },
-  { rank: 8, name: "Blaze_Bull", portfolio: 2310.47, change24h: 3.3, wins: 118, games: 355, topHolding: "AMD" },
-  { rank: 9, name: "villager_hft", portfolio: 2101.0, change24h: -0.4, wins: 109, games: 301, topHolding: "META" },
-  { rank: 10, name: "OreGainz", portfolio: 1988.6, change24h: 5.1, wins: 88, games: 260, topHolding: "PLTR" },
-  { rank: 11, name: "Redstone_Ray", portfolio: 1820.3, change24h: 0.9, wins: 92, games: 290, topHolding: "AMZN" },
-  { rank: 12, name: "moon_boi", portfolio: 1655.0, change24h: 12.7, wins: 71, games: 240, topHolding: "COIN" },
+  { rank: 1, name: "Diamond_Dan", portfolio: 318.4, change24h: 4.1, wins: 19, games: 44, topHolding: "NVDA" },
+  { rank: 2, name: "xX_Buffett_Xx", portfolio: 276.9, change24h: 1.3, wins: 16, games: 51, topHolding: "AAPL" },
+  { rank: 3, name: "creeper_capital", portfolio: 241.05, change24h: -1.8, wins: 17, games: 39, topHolding: "TSLA" },
+  { rank: 4, name: "Enderman_ETF", portfolio: 198.2, change24h: 2.6, wins: 12, games: 33, topHolding: "SPY" },
+  { rank: 5, name: "PaperHands69", portfolio: 164.7, change24h: -5.4, wins: 8, games: 41, topHolding: "GME" },
+  { rank: 6, name: "Notch_Trades", portfolio: 152.3, change24h: 1.1, wins: 11, games: 30, topHolding: "MSFT" },
+  { rank: 7, name: "SteveJobs_", portfolio: 139.8, change24h: 0.4, wins: 10, games: 28, topHolding: "AAPL" },
+  { rank: 8, name: "Blaze_Bull", portfolio: 121.6, change24h: 2.2, wins: 9, games: 27, topHolding: "AMD" },
+  { rank: 9, name: "villager_hft", portfolio: 104.0, change24h: -0.3, wins: 8, games: 24, topHolding: "META" },
+  { rank: 10, name: "OreGainz", portfolio: 88.5, change24h: 3.0, wins: 6, games: 19, topHolding: "PLTR" },
+  { rank: 11, name: "Redstone_Ray", portfolio: 73.2, change24h: 0.7, wins: 6, games: 21, topHolding: "AMZN" },
+  { rank: 12, name: "moon_boi", portfolio: 61.9, change24h: 8.9, wins: 4, games: 17, topHolding: "COIN" },
 ];
 
 export const stats = [
-  { label: "Players online", value: "1,284" },
-  { label: "Shares paid out", value: "18,402" },
-  { label: "Games today", value: "3,911" },
-  { label: "Top payout", value: "2.4 NVDA" },
+  { label: "Players online", value: "37" },
+  { label: "Shares paid out", value: "412" },
+  { label: "Games today", value: "96" },
+  { label: "Top payout", value: "0.5 NVDA" },
 ];
 
 export const SERVER_IP = "play.stonkcraft.gg";
