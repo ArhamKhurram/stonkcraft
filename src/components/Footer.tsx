@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { SERVER_IP } from "@/lib/data";
+import { SERVER_IP, X_URL } from "@/lib/data";
 
 export default function Footer() {
   return (
@@ -34,7 +34,7 @@ export default function Footer() {
           title="Community"
           links={[
             ["Discord", "#"],
-            ["Twitter / X", "#"],
+            ["X (Twitter)", X_URL],
             ["YouTube", "#"],
             ["Status", "#"],
           ]}
@@ -66,7 +66,11 @@ function FooterCol({ title, links }: { title: string; links: [string, string][] 
       <ul className="space-y-2 text-sm">
         {links.map(([label, href]) => (
           <li key={label}>
-            <Link href={href} className="text-muted hover:text-ice transition-colors">
+            <Link
+              href={href}
+              className="text-muted hover:text-ice transition-colors"
+              {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
               {label}
             </Link>
           </li>

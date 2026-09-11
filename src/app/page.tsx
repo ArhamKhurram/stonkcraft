@@ -4,7 +4,8 @@ import CopyIP from "@/components/CopyIP";
 import MinigameCard from "@/components/MinigameCard";
 import LeaderboardTable from "@/components/LeaderboardTable";
 import EmptyBoard from "@/components/EmptyBoard";
-import { minigames, leaderboard, stats } from "@/lib/data";
+import { minigames, leaderboard, stats, X_URL } from "@/lib/data";
+import XIcon from "@/components/XIcon";
 
 export default function Home() {
   const featured = minigames.filter((g) => g.status === "live").slice(0, 4);
@@ -163,8 +164,8 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 relative">
             <CopyIP large />
-            <a href="#" className="btn btn-ghost">
-              Join the Discord
+            <a href={X_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+              <XIcon /> Follow on X
             </a>
           </div>
           <ol className="mt-10 grid gap-3 sm:grid-cols-3 text-left text-sm relative">

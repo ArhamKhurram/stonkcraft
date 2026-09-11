@@ -156,3 +156,4 @@ export const stats = [
 ];
 
 export const SERVER_IP = "play.stonkcraft.gg";
+export const X_URL = "https://x.com/StonkCraftSol";

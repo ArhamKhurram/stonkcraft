@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import XIcon from "@/components/XIcon";
+import { X_URL } from "@/lib/data";
 
 const links = [
   { href: "/", label: "Home" },
@@ -55,6 +57,16 @@ export default function Nav() {
             <span className="live-dot inline-block w-2 h-2 bg-up" />
             1 online
           </span>
+          <a
+            href={X_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="StonkCraft on X"
+            title="Follow on X"
+            className="block w-9 h-9 flex items-center justify-center text-muted hover:text-ice hover:bg-panel-2 transition-colors"
+          >
+            <XIcon />
+          </a>
           <Link href="/#join" className="btn btn-primary !py-2.5 !px-4 !text-[9px]">
             Play now
           </Link>
@@ -86,6 +98,14 @@ export default function Nav() {
           <Link href="/#join" onClick={() => setOpen(false)} className="btn btn-primary mt-2 justify-center">
             Play now
           </Link>
+          <a
+            href={X_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-ghost justify-center"
+          >
+            <XIcon /> Follow on X
+          </a>
         </div>
       )}
     </header>
